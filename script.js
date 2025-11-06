@@ -3,7 +3,7 @@
    Full Workflow + Auto Stage Visibility
 =========================================== */
 
-const API_BASE = "http://localhost:5000/api"; 
+const API_BASE = "https://pharma-iot-monitoring.onrender.com/api";
 
 // ========== DOM Elements ==========
 const liveTemp = document.getElementById("liveTemp");
