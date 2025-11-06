@@ -96,6 +96,11 @@
             <label>Notes<input id="supplierNotes" placeholder="e.g. raw ingredient 5 kg" /></label>
             <button type="submit" class="btn primary">Create Shipment</button>
           </form>
+          <div id="supplierList" class="stage-box">
+  <h4>📦 Current Supplier Shipments</h4>
+  <div class="stage-content"><small>Loading...</small></div>
+</div>
+
         </section>
 
         <!-- MANUFACTURER -->
@@ -109,6 +114,11 @@
             <button id="btnRequestFDA" type="button" class="btn ghost">Request FDA Approval</button>
           </form>
           <p id="fdaResult" class="note"></p>
+          <div id="manufacturerList" class="stage-box">
+  <h4>🏭 Pending Manufacturing Batches</h4>
+  <div class="stage-content"><small>Loading...</small></div>
+</div>
+
         </section>
 
         <!-- REPACKAGE -->
@@ -119,6 +129,11 @@
             <label>Handled By<input id="repackBy" value="repack_station_1" /></label>
             <button type="submit" class="btn primary">Mark Repackaged</button>
           </form>
+          <div id="repackageList" class="stage-box">
+  <h4>📑 Repackaging Batches</h4>
+  <div class="stage-content"><small>Loading...</small></div>
+</div>
+
         </section>
 
         <!-- DISTRIBUTOR -->
@@ -129,6 +144,11 @@
             <label>Vehicle ID<input id="distVehicle" value="TRUCK-01" /></label>
             <button type="submit" class="btn primary">Dispatch</button>
           </form>
+          <div id="distributorList" class="stage-box">
+  <h4>🚚 Distribution Queue</h4>
+  <div class="stage-content"><small>Loading...</small></div>
+</div>
+
         </section>
 
         <!-- PHARMACY -->
@@ -140,6 +160,11 @@
             <button type="submit" class="btn primary">Receive</button>
             <button id="btnMarkSold" type="button" class="btn ghost">Mark Sold</button>
           </form>
+          <div id="pharmacyList" class="stage-box">
+  <h4>🏥 Received Medicines</h4>
+  <div class="stage-content"><small>Loading...</small></div>
+</div>
+
         </section>
 
         <!-- PATIENT -->
