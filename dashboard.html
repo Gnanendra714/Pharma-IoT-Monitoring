@@ -1,0 +1,172 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Elevium — Pharma Supply Chain Dashboard</title>
+
+  <!-- CSS & Chart.js -->
+  <link rel="stylesheet" href="style.css" />
+  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+</head>
+<body>
+  <div class="app">
+
+    <!-- Sidebar -->
+    <aside class="sidebar">
+      <div class="brand">
+        <div class="logo">💊</div>
+        <div>
+          <div class="brand-title">Elevium</div>
+          <div class="brand-sub">Pharma IoT Traceability</div>
+        </div>
+      </div>
+
+      <nav class="nav">
+        <button class="nav-btn active" data-target="dashboard"><span>🏠</span>Dashboard</button>
+        <button class="nav-btn" data-target="supplier"><span>📦</span>Supplier</button>
+        <button class="nav-btn" data-target="manufacturer"><span>🏭</span>Manufacturer</button>
+        <button class="nav-btn" data-target="repackage"><span>📑</span>Repackage</button>
+        <button class="nav-btn" data-target="distributor"><span>🚚</span>Distributor</button>
+        <button class="nav-btn" data-target="pharmacy"><span>🏥</span>Pharmacy</button>
+        <button class="nav-btn" data-target="patient"><span>🧍‍♂️</span>Patient</button>
+        <button class="nav-btn" data-target="fda"><span>🧾</span>FDA</button>
+
+        <hr />
+        <button id="btnExport" class="nav-btn small">⬇️ Export Ledger</button>
+        <button id="btnClear" class="nav-btn small">🗑️ Clear Data</button>
+      </nav>
+    </aside>
+
+    <!-- Main -->
+    <div class="main">
+      <header class="topbar">
+        <div>
+          <div class="title">Pharma Supply Chain</div>
+          <div class="subtitle">IoT + Blockchain Traceability</div>
+        </div>
+        <div class="user">Hello, <b>Admin</b></div>
+      </header>
+
+      <main class="content">
+
+        <!-- DASHBOARD -->
+        <section id="dashboard" class="panel active">
+          <div class="grid">
+            <div class="card">
+              <h3>Batch Overview</h3>
+              <div class="meta">
+                <div><small>Drug</small><div>Paracetamol 500 mg</div></div>
+                <div><small>Batch</small><div id="uiBatch">PCT01</div></div>
+                <div><small>Stage</small><div id="uiStage">Supplier</div></div>
+                <div><small>Status</small><div id="uiStatus" class="badge safe">In Progress</div></div>
+              </div>
+              <div class="card-actions">
+                <button id="btnNextStage" class="btn primary">Advance Stage</button>
+                <button id="btnAddEvent" class="btn ghost">Add Event</button>
+              </div>
+            </div>
+
+            <div class="card card-small">
+              <h3>IoT Live Data</h3>
+              <div class="iot-row">
+                🌡️ <span id="liveTemp">--</span> °C&nbsp;&nbsp;💧<span id="liveHum">--</span> %
+              </div>
+              <div id="iotBadge" class="badge info">Waiting...</div>
+              <div class="small">ThingSpeak Channel ID: <code>3149172</code></div>
+            </div>
+
+            <div class="card card-wide">
+              <h3>Live Temperature & Humidity</h3>
+              <div class="chart-wrap"><canvas id="iotChart"></canvas></div>
+            </div>
+
+            <div class="card card-wide">
+              <h3>Recent Ledger Events</h3>
+              <div id="ledgerTable" class="ledger"></div>
+            </div>
+          </div>
+        </section>
+
+        <!-- SUPPLIER -->
+        <section id="supplier" class="panel">
+          <h2>📦 Supplier</h2>
+          <form id="frmSupplier" class="form">
+            <label>Batch ID<input id="supplierBatch" value="PCT01" /></label>
+            <label>Notes<input id="supplierNotes" placeholder="e.g. raw ingredient 5 kg" /></label>
+            <button type="submit" class="btn primary">Create Shipment</button>
+          </form>
+        </section>
+
+        <!-- MANUFACTURER -->
+        <section id="manufacturer" class="panel">
+          <h2>🏭 Manufacturer</h2>
+          <form id="frmManufacturer" class="form">
+            <label>Batch ID<input id="manufactBatch" value="PCT01" /></label>
+            <label>Drug Name<input id="manufactDrug" value="Paracetamol 500 mg" /></label>
+            <label>Notes<input id="manufactNotes" value="Manufactured 1000 packs" /></label>
+            <button type="submit" class="btn primary">Record Manufacture</button>
+            <button id="btnRequestFDA" type="button" class="btn ghost">Request FDA Approval</button>
+          </form>
+          <p id="fdaResult" class="note"></p>
+        </section>
+
+        <!-- REPACKAGE -->
+        <section id="repackage" class="panel">
+          <h2>📑 Repackage</h2>
+          <form id="frmRepackage" class="form">
+            <label>Batch ID<input id="repackBatch" value="PCT01" /></label>
+            <label>Handled By<input id="repackBy" value="repack_station_1" /></label>
+            <button type="submit" class="btn primary">Mark Repackaged</button>
+          </form>
+        </section>
+
+        <!-- DISTRIBUTOR -->
+        <section id="distributor" class="panel">
+          <h2>🚚 Distributor</h2>
+          <form id="frmDistributor" class="form">
+            <label>Batch ID<input id="distBatch" value="PCT01" /></label>
+            <label>Vehicle ID<input id="distVehicle" value="TRUCK-01" /></label>
+            <button type="submit" class="btn primary">Dispatch</button>
+          </form>
+        </section>
+
+        <!-- PHARMACY -->
+        <section id="pharmacy" class="panel">
+          <h2>🏥 Pharmacy</h2>
+          <form id="frmPharmacy" class="form">
+            <label>Batch ID<input id="pharmBatch" value="PCT01" /></label>
+            <label>Pharmacy ID<input id="pharmId" value="pharm_22" /></label>
+            <button type="submit" class="btn primary">Receive</button>
+            <button id="btnMarkSold" type="button" class="btn ghost">Mark Sold</button>
+          </form>
+        </section>
+
+        <!-- PATIENT -->
+        <section id="patient" class="panel">
+          <h2>🧍‍♂️ Patient</h2>
+          <form id="frmPatient" class="form">
+            <label>Batch ID<input id="patientBatch" value="PCT01" /></label>
+            <button type="submit" class="btn primary">Verify</button>
+          </form>
+          <div id="patientVerify" class="box"></div>
+        </section>
+
+        <!-- FDA -->
+        <section id="fda" class="panel">
+          <h2>🧾 FDA</h2>
+          <div class="box">
+            <h4>Full Ledger</h4>
+            <div id="fullLedger" class="ledger"></div>
+          </div>
+        </section>
+
+      </main>
+      <footer class="footer">© 2025 Elevium — Demo Prototype</footer>
+    </div>
+  </div>
+
+  <!-- JS -->
+  <script src="script.js"></script>
+</body>
+</html>

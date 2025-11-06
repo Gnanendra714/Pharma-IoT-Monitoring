@@ -1,0 +1,76 @@
+:root {
+  --bg1:#0f2027; --bg2:#203a43;
+  --accent1:#00b894; --accent2:#0984e3;
+  --card:rgba(255,255,255,0.06); --muted:#9fb6c6;
+  --danger:#ff6b6b; --success:#2ecc71;
+}
+*{box-sizing:border-box}
+html,body{height:100%;margin:0;font-family:Inter,system-ui,"Segoe UI",Roboto,Arial;color:#e8f3f3}
+body{background:linear-gradient(135deg,var(--bg1),var(--bg2));-webkit-font-smoothing:antialiased;overflow:hidden}
+.app{display:flex;min-height:100vh}
+
+/* Sidebar */
+.sidebar{width:250px;padding:20px;display:flex;flex-direction:column;gap:14px;
+  background:linear-gradient(180deg,rgba(255,255,255,0.04),rgba(255,255,255,0.02));
+  border-right:1px solid rgba(255,255,255,0.05);backdrop-filter:blur(8px)}
+.brand{display:flex;gap:12px;align-items:center}
+.logo{font-size:32px}
+.brand-title{font-weight:800;font-size:18px;color:var(--accent2)}
+.brand-sub{font-size:12px;color:var(--muted)}
+.nav{display:flex;flex-direction:column;gap:8px}
+.nav-btn{background:transparent;border:0;padding:10px;border-radius:8px;text-align:left;color:#d9f3f3;font-weight:600;cursor:pointer;transition:.2s}
+.nav-btn span{width:26px;display:inline-block}
+.nav-btn:hover{transform:translateX(6px);color:#fff}
+.nav-btn.active{background:linear-gradient(90deg,var(--accent1),var(--accent2));box-shadow:0 8px 30px rgba(0,0,0,.28);color:#fff}
+.small{font-size:14px}
+
+/* Main + Topbar */
+.main{flex:1;display:flex;flex-direction:column;overflow:auto}
+.topbar{display:flex;justify-content:space-between;align-items:center;padding:14px 20px;border-bottom:1px solid rgba(255,255,255,0.05)}
+.topbar .title{font-size:20px;color:var(--accent1);font-weight:700}
+.topbar .subtitle{font-size:12px;color:var(--muted)}
+.user{color:#fff;font-size:14px}
+
+/* Panels */
+.content{padding:18px;overflow:auto;height:calc(100vh - 120px)}
+.panel{display:none;animation:fadeIn .4s ease}
+.panel.active{display:block}
+h2{color:#74ffda}
+
+/* Cards */
+.grid{display:grid;grid-template-columns:repeat(3,1fr);gap:18px}
+@media(max-width:1000px){.grid{grid-template-columns:1fr}}
+.card{background:var(--card);padding:16px;border-radius:12px;box-shadow:0 10px 30px rgba(0,0,0,.25);border:1px solid rgba(255,255,255,.03)}
+.card-wide{grid-column:1/-1}
+.card h3{margin:0 0 10px;color:#fff}
+.meta{display:flex;gap:12px;flex-wrap:wrap}
+.meta small{display:block;color:var(--muted);font-size:12px}
+.card-actions{margin-top:10px;display:flex;gap:8px}
+
+/* Buttons */
+.btn{padding:8px 14px;border-radius:8px;border:0;cursor:pointer;font-weight:700}
+.btn.primary{background:linear-gradient(90deg,var(--accent1),var(--accent2));color:#fff}
+.btn.ghost{background:transparent;border:1px solid rgba(255,255,255,.15);color:#fff}
+
+/* Status + IoT */
+.iot-row{font-weight:700;font-size:18px}
+.badge{padding:4px 10px;border-radius:12px;font-weight:700}
+.badge.safe{background:var(--success);color:#05240f}
+.badge.alert{background:var(--danger);color:#2b0202}
+.badge.info{background:rgba(255,255,255,.1);color:#dfe}
+
+/* Ledger */
+.ledger{background:rgba(0,0,0,.2);padding:10px;border-radius:8px;max-height:280px;overflow:auto}
+.ledger .row{display:flex;gap:10px;padding:6px;border-bottom:1px dashed rgba(255,255,255,.1)}
+.ledger .time{color:var(--muted);font-size:12px}
+
+/* Forms */
+.form{display:flex;flex-wrap:wrap;gap:10px;align-items:center;margin-top:10px}
+.form label{display:flex;flex-direction:column;gap:4px;min-width:200px}
+.form input{padding:8px;border-radius:8px;border:1px solid rgba(255,255,255,.1);background:transparent;color:#fff}
+
+/* Misc */
+.box{background:rgba(255,255,255,.05);padding:10px;border-radius:8px;margin-top:10px}
+.footer{text-align:center;color:var(--muted);padding:10px;border-top:1px solid rgba(255,255,255,.05)}
+@keyframes fadeIn{from{opacity:0;transform:translateY(10px)}to{opacity:1;transform:none}}
+
