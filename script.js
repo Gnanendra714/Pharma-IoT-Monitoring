@@ -3,7 +3,7 @@
    Final Updated script.js — Localhost Ready
 =========================================== */
 
-const API_BASE = "http://localhost:5000/api"; // change if needed
+const API_BASE = "https://pharma-iot-monitoring.onrender.com/api";
 
 // ---------------- DOM references ----------------
 const liveTemp = document.getElementById("liveTemp");
