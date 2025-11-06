@@ -53,19 +53,20 @@
         <!-- DASHBOARD -->
         <section id="dashboard" class="panel active">
           <div class="grid">
-            <div class="card">
-              <h3>Batch Overview</h3>
-              <div class="meta">
-                <div><small>Drug</small><div>Paracetamol 500 mg</div></div>
-                <div><small>Batch</small><div id="uiBatch">PCT01</div></div>
-                <div><small>Stage</small><div id="uiStage">Supplier</div></div>
-                <div><small>Status</small><div id="uiStatus" class="badge safe">In Progress</div></div>
-              </div>
-              <div class="card-actions">
-                <button id="btnNextStage" class="btn primary">Advance Stage</button>
-                <button id="btnAddEvent" class="btn ghost">Add Event</button>
-              </div>
-            </div>
+<div class="card">
+  <h3>Batch Overview</h3>
+  <div class="meta">
+    <div><small>Drug</small><div id="uiDrug">Paracetamol 500 mg</div></div>
+    <div><small>Batch</small><div id="uiBatch">PCT01</div></div>
+    <div><small>Stage</small><div id="uiStage">Supplier</div></div>
+    <div><small>Status</small><div id="uiStatus" class="badge safe">In Progress</div></div>
+  </div>
+  <div class="card-actions">
+    <button id="btnNextStage" class="btn primary">Advance Stage</button>
+    <button id="btnAddEvent" class="btn ghost">Add Event</button>
+  </div>
+</div>
+
 
             <div class="card card-small">
               <h3>IoT Live Data</h3>
@@ -107,12 +108,16 @@
         <section id="manufacturer" class="panel">
           <h2>🏭 Manufacturer</h2>
           <form id="frmManufacturer" class="form">
-            <label>Batch ID<input id="manufactBatch" value="PCT01" /></label>
-            <label>Drug Name<input id="manufactDrug" value="Paracetamol 500 mg" /></label>
-            <label>Notes<input id="manufactNotes" value="Manufactured 1000 packs" /></label>
-            <button type="submit" class="btn primary">Record Manufacture</button>
-            <button id="btnRequestFDA" type="button" class="btn ghost">Request FDA Approval</button>
-          </form>
+  <label>Batch ID<input id="manufactBatch" value="PCT01" /></label>
+  <label>Drug Name<input id="manufactDrug" value="Paracetamol 500 mg" /></label>
+  <label>Notes<input id="manufactNotes" value="Manufactured 1000 packs" /></label>
+  
+  <div class="button-row">
+    <button id="btnAcceptShipment" type="button" class="btn primary">✅ Accept Shipment</button>
+    <button id="btnSendRepackage" type="button" class="btn ghost">📦 Send to Repackage</button>
+  </div>
+</form>
+
           <p id="fdaResult" class="note"></p>
           <div id="manufacturerList" class="stage-box">
   <h4>🏭 Pending Manufacturing Batches</h4>
@@ -160,11 +165,7 @@
             <button type="submit" class="btn primary">Receive</button>
             <button id="btnMarkSold" type="button" class="btn ghost">Mark Sold</button>
           </form>
-          <div id="pharmacyList" class="stage-box">
-  <h4>🏥 Received Medicines</h4>
-  <div class="stage-content"><small>Loading...</small></div>
-</div>
-
+          
         </section>
 
         <!-- PATIENT -->

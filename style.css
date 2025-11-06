@@ -108,6 +108,7 @@ h2{color:#74ffda}
 .modal-box p {
   font-size: 15px;
   color: #333;
+
   margin: 10px 0 20px;
   line-height: 1.4;
 }
@@ -225,3 +226,4 @@ h2{color:#74ffda}
 .stage-item:last-child {
   border-bottom: none;
 }
+
